@@ -1,0 +1,275 @@
+Natijalarni baholash usuli:
+• Har bir savolga javob: "Ha" (2 ball), "Qisman" (1 ball), "Yo‘q" (0 ball) tarzida ball beriladi.
+• Har bir bo‘limda maksimal ball: 100
+• Jami maksimal ball: 500
+
+Moslik darajasi:
+• 450-500 ball: Juda mos
+• 350-449 ball: Yaxshi mos
+• 250-349 ball: O‘rtacha mos
+• 150-249 ball: Noto‘g‘ri moslik ehtimoli yuqori
+• 0-149 ball: Jiddiy mos kelmaslik
+
+Tavsiyalar:
+• Past natijalar chiqsa, juftliklar o‘zaro suhbat, psixologik maslahat yoki nikohdan oldingi maslahat dasturlaridan foydalanishlari mumkin.
+• Bu test faqat yo‘naltirish uchun; qat’iy hukm emas.
+
+1-BO‘LIM: MULOQOT VA TUSHUNISH (50 psixologik test savollar)
+1. Siz juftingiz bilan har qanday mavzuda ochiq gaplasha olasizmi? 
+2. Muloqotda eshitish va tushunishga harakat qilasizmi? 
+3. Ogʻir mavzularda ham murosaga kelishga intilasizmi? 
+4. Qarama-qarshi fikr bildirganingizda juftingiz sizni tinglaydimi? 
+5. So‘zlaringiz orqali juftingizni ranjitgan vaqtingizda uzr so‘raysizmi? 
+6. Suhbat davomida turmush o‘rtog‘ingizga quloq solish muhim deb hisoblaysizmi? 
+7. Biror muammo yuzaga kelsa, uni birgalikda hal qilishga harakat qilasizmi? 
+8. Juftingiz siz bilan dardlashishni istaganida tayyor bo‘lasizmi? 
+9. O‘zingizni tushuntirishda ochiq va halol bo‘lishga harakat qilasizmi? 
+10. Xatolaringizni tan olib, muhokamaga tayyormisiz? 
+11. Juftingiz sizning fikringizni e’tiborsiz qoldirganida qanday munosabat bildirasiz? 
+12. Bahsdan so‘ng yarashishga intilasizmi? 
+13. His-tuyg‘ularingizni ifoda etishda qiynalasizmi? 
+14. Siz uchun tinch, samimiy suhbatlar muhimmi? 
+15. Har doim haqli bo‘lishga intilasizmi? 
+16. Suhbat davomida juftingizni ko‘proq tinglaysizmi yoki gapirasizmi? 
+17. Suhbatda ko‘tarilgan ohang sizni tez ranjitadimi? 
+18. Muloqot davomida sarkazm va istehzo ishlatasizmi? 
+19. Juftingizni siz bilan to‘liq tushunishini kutasizmi? 
+20. Sizga nisbatan aytilgan tanqidni qanday qabul qilasiz? 
+21. Suhbatdan keyin o‘ylab, o‘zingizni tahlil qilasizmi? 
+22. Siz bilan gaplashish oson deb o‘ylaysizmi? 
+23. Qiyin mavzularni ortga surib, muammoni e’tiborsiz qoldirasizmi? 
+24. Juftingiz sizga nisbatan ochiq gapira oladimi? 
+25. Sizningcha, to‘g‘ridan-to‘g‘ri tanbeh berish muloqotda foydalimi? 
+26. Muloqotda hurmat va e’tiborni saqlashga harakat qilasizmi? 
+27. Siz ko‘proq bahslashishni yoqtirasizmi yoki murosani? 
+28. Og‘zaki ifoda bilan qiyinchilikka duch kelasizmi? 
+29. His-tuyg‘ularingizni yozma shaklda ifoda qilish osonroqmi? 
+30. Siz uchun jimlik muloqotsizlik belgisimikan? 
+31. Juftingiz bilan kundalik suhbatlar qilasizmi? 
+32. Biror gapingiz noto‘g‘ri tushunilganda, uni tushuntirib berasizmi? 
+33. Juftingiz fikrini o‘zgartirishga urinasizmi? 
+34. Suhbatda birinchi bo‘lib uzr so‘rash siz uchun qiyinmi? 
+35. Sizga qarshi fikr bildirgan insonni qanday qabul qilasiz? 
+36. Muammoli vaziyatda ovozingizni ko‘tarasizmi? 
+37. Muloqotda ishonch va samimiyat siz uchun qanday ahamiyatga ega? 
+38. Sizni gapirishga majbur qilishadimi yoki o‘zingiz istaysizmi? 
+39. Turli mavzularda suhbatlashish sizga yoqadimi?
+40. O‘z fikringizni bildirgach, boshqalarni ham tinglaysizmi? 
+41. Juftingiz sizni tushunmaganda qanday yo‘l tutasiz? 
+42. Sizningcha, har qanday muammoni muloqot orqali hal qilish mumkinmi? 
+43. Suhbatda diqqatni jamlashda qiynalasizmi? 
+44. Muloqotda hissiy reaksiyalarni nazorat qilasizmi? 
+45. Juftingiz bilan biror mavzuda tortishganingizda uni keyinchalik muhokama qilasizmi? 
+46. Siz juftingizga fikringizni doim to‘liq bildirganmisiz?
+47. Muloqotni rad etish oilaviy aloqaga salbiy ta’sir qiladi deb o‘ylaysizmi? 
+48. Muloqot davomida e’tibor qaratilmaganlik sizni ranjitadimi? 
+49. Qiyin suhbatlardan qochish odatingiz bormi? 
+50. Siz uchun muloqot – bu bir-biringizni tushunish vositasimi?
+
+2-BO‘LIM: QADRIYATLAR VA HAYOTGA QARASHLAR (50 psixologik test savollar)
+1. Men uchun oilaviy sadoqat har qanday boshqa qadriyatdan ustundir.
+2. Farovonlikka erishish uchun halol yo‘ldan yurish zarur deb hisoblayman.
+3. Har bir insonning hayotda maqsadi bo‘lishi kerak.
+4. Oila meni o‘zligimni to‘liq namoyon etishim uchun muhim tuzilma deb bilaman.
+5. Muammolarni birga yechish oilaviy qadriyatlarning ajralmas qismidir.
+6. Turmush o‘rtog‘imning diniy qarashlariga hurmat bilan qarayman.
+7. Hayotda mehr va rahm-shafqatni eng muhim fazilat deb hisoblayman.
+8. Vaqt o‘tgan sari qarashlarimni yangilab borishga tayyorman.
+9. Katta avlod vakillarining fikri men uchun muhim.
+10. Oila qurishdan oldin hayotiy qadriyatlarni muhokama qilish zarur deb hisoblayman.
+11. Ota-onaga ehtirom oila mustahkamligining asosi deb bilaman.
+12. Men uchun o‘z orzularimni amalga oshirish oilaviy mas’uliyatdan muhim emas.
+13. Jamiyat manfaatini oila manfaatidan ustun qo‘yish kerak deb o‘ylamayman.
+14. Vatanparvarlik hayotimda asosiy qadriyatlardan biridir.
+15. Men o‘zim tanlagan hayot yo‘limga sodiqlikni qadrlayman.
+16. Erkin fikrlash va tanlov imkoniyati men uchun muhim qadriyatdir.
+17. Diniy va ma’naviy qadriyatlar hayotimda markaziy o‘ringa ega.
+18. Men uchun to‘g‘rilik har qanday vaziyatda ustun turadi.
+19. Hayotda muvaffaqiyatga erishish mas’uliyat va mehnatni talab qiladi.
+20. Oilaviy hayotda teng huquqlilik va hurmat muhim deb hisoblayman.
+21. Qiyinchiliklarga bardosh berish insonning yetukligini ko‘rsatadi.
+22. Men uchun insoniy hurmat moddiy boylikdan muhimroqdir.
+23. Qaror qabul qilishda o‘z e’tiqodimga tayanaman.
+24. Juftim bilan ma’naviy jihatdan uyg‘un bo‘lish men uchun juda muhim.
+25. Men uchun bolalar tarbiyasida axloqiy qadriyatlar birinchi o‘rinda turadi.
+26. Oilaviy hayotda har ikki tomonning qarashlari teng muhim bo‘lishi kerak.
+27. Meni o‘zgartirishga harakat qiladigan juftlik bilan yashash qiyin deb hisoblayman.
+28. Men uchun sadoqat, ishonch va mehr-oqibat asosiy hayotiy ustuvorliklardir.
+29. Men har qanday vaziyatda adolatli bo‘lishga harakat qilaman.
+30. Men oilaviy muammolarni tashqi aralashuvsiz hal qilish tarafdoriman.
+31. Mening uchun bolalarning tarbiyasi umumiy mas’uliyatdir.
+32. Har bir inson o‘z qarashlariga ega bo‘lish huquqiga ega deb o‘ylayman.
+33. Oila ichidagi qadriyatlar umumiy kelishuv asosida shakllanishi kerak.
+34. Men uchun madaniyat va an’analarni saqlash muhim.
+35. Har bir qaror oldidan ijtimoiy va ma’naviy oqibatlarni hisobga olaman.
+36. Men uchun ruhiy uyg‘unlik moddiy barqarorlikdan ustun.
+37. Men har doim haqiqatni aytishni qadrlayman, hatto bu og‘riqli bo‘lsa ham.
+38. Men uchun oilaviy hayotda bardavomlik va sadoqat muhim.
+39. Men ijtimoiy tazyiqqa emas, ichki e’tiqodimga asoslanaman.
+40. Men har doim o‘z qarorim uchun javobgarlikni his qilaman.
+41. Men doimo farzandlarimga hayotiy qadriyatlarni o‘rgatishga intilaman.
+42. Men turmush o‘rtog‘imning hayotiy pozitsiyasini tushunishga harakat qilaman.
+43. Men uchun oilaviy an’analar muqaddas.
+44. Men qadriyatlarni vaqtinchalik emas, doimiy narsa deb bilaman.
+45. Har bir insonning hayotiy qadriyatlari shakllanadigan muhitga bog‘liq deb hisoblayman.
+46. Men shaxsiy manfaatlardan ko‘ra oila manfaatini ustun qo‘yaman.
+47. Hayotiy pozitsiyalarimiz turli bo‘lsa ham, murosaga tayyorman.
+48. O‘z qarashlarimni tushuntirib bera olish men uchun muhim.
+49. Men uchun turmush o‘rtog‘im bilan qadriyatlardagi uyg‘unlik muhimroq.
+50. Qarashlar farqlansa ham, birga yechim topish mumkinligiga ishonaman.
+
+3-BO‘LIM: MOLIYAVIY YONDASHUV (50 psixologik test savollar)
+1. Pulni tejashga moyilmisiz?
+2. Juftingiz bilan daromadingizni bo‘lishishga tayyormisiz?
+3. Pul sarflayotganda reja asosida harakat qilasizmi?
+4. Kredit olishdan oldin juftingiz bilan maslahat qilasizmi?
+5. Har oy jamg‘arma qilasizmi?
+6. Pul bilan bog‘liq masalalarda stressga tushasizmi?
+7. Moliyaviy qarorlar sizda xavotir uyg‘otadimi?
+8. Yirik xaridlar sizda hissiy bosim keltiradimi?
+9. Moliyaviy rejalar tuzishda turmush o‘rtog‘ingiz qatnashishini xohlaysizmi?
+10. Juftingiz moliyaviy holatini bilish siz uchun muhimmi?
+11. Pul haqida ochiq gaplashish sizga qiyinmi?
+12. Moliyaviy muammolarni juftingizdan yashirasizmi?
+13. Qarzga botganingizni juftingizga bildirasizmi?
+14. To‘lovlarni kechiktirish sizda xavotir uyg‘otadimi?
+15. Pul ishlash sizga quvonch yoki zo‘riqish olib keladimi?
+16. Moliyaviy maqsadlaringizni yozib yuritasizmi?
+17. Jamg‘arma yo‘qligi sizda tashvish uyg‘otadimi?
+18. Pul bilan bog‘liq masalalarda siz o‘zingizga ishonasizmi?
+19. Juftingiz bilan umumiy byudjet yuritish sizga og‘irlik qiladimi?
+20. Moliyaviy mustaqillik siz uchun ruhiy xotirjamlik manbaimi?
+21. Siz pulni sarflashda his-tuyg‘ularga buysunasizmi?
+22. Juftingizdan moliyaviy yordam olish sizga noqulaylik tug‘diradimi?
+23. Yirik xaridlarda pushaymonlik ko‘p bo‘ladimi?
+24. Oila a'zolarining moliyaviy talablarini qondirish sizga og‘irlik qiladimi?
+25. Pul ishlash va oilaviy vaqtni muvozanatlashtirish siz uchun muammomi?
+26. Siz jamg‘arma qilganingizda o‘zingizni yaxshi his qilasizmi?
+27. Puldan ko‘ra vaqt siz uchun muhimroqmi?
+28. O‘z daromadingiz yetarli emasligidan ko‘p xavotirlanasizmi?
+29. Moliyaviy tanglik paytida asabiylashasizmi?
+30. Pul to‘g‘risidagi bahslar sizni ruhan charchatadimi?
+31. Tejamkorlikni o‘rganish siz uchun muhimmi?
+32. Juftingizning moliyaviy qarorlariga aralashasizmi?
+33. Pul haqida noto‘g‘ri qaror qabul qilganingizda afsuslanasizmi?
+34. Har qanday holatda ham o‘zingizni moddiy jihatdan erkin his qilishni xohlaysizmi?
+35. Jamg‘arma bo‘lmasa, o‘zingizni himoyasiz his qilasizmi?
+36. Har oy mablag‘larni rejalashtirish sizga og‘irlik qiladimi?
+37. Ko‘p pul sarflaganingizda o‘zingizni aybdor his qilasizmi?
+38. Juftingiz sizdan ko‘proq daromad qilsa, bu sizga ta’sir qiladimi?
+39. Siz uchun oilaviy sodiqlik moliyaviy sadoqat bilan ham bog‘liqmi?
+40. Har bir xariddan oldin tafakkur qilasizmi?
+41. Moliyaviy yutuqlar sizga psixologik motivatsiya beradimi?
+42. Qarzdan qutulish sizda yengillik hissini uyg‘otadimi?
+43. Moliyaviy rejalashtirishga vaqt ajrata olasizmi?
+44. Pulga bo‘lgan noaniqlik sizni stressga soladimi?
+45. Siz uchun daromaddan ko‘ra barqarorlik muhimroqmi?
+46. Moliyaviy qiyinchiliklar sizda yakkalanish hissini paydo qiladimi?
+47. Turmush o‘rtog‘ingiz bilan pul haqida suhbat sizni yaqinlashtiradimi?
+48. Pul ishlashda o‘zingizga bosim o‘rnatasizmi?
+49. Moliyaviy erkinlikka erishganingizda o‘zingizni to‘liq qadrlaysizmi?
+50. Moliyaviy kelishmovchiliklar ruhiy muvozanatingizga ta’sir qiladimi?
+
+4-BO‘LIM: HISSIY BARQARORLIK (50 psixologik test savollar)
+1. Stressli vaziyatlarda o‘zingizni tezda bosib olasizmi?
+2. Kutilmagan muammolar sizni ruhiy jihatdan charchatadimi?
+3. Juftingiz bilan janjal qilganingizdan keyin o‘zingizni xafa bo’lasizmi?
+4. Sizdagi asabiylik juftingiz bilan munosabatlarga ta’sir qilamidi?
+5. O‘zingizni tinchlantirishning o‘ziga xos usullari bormi?
+6. Muammolarni ichingizda saqlab yurishga moyilmisiz?
+7. Biror narsa sizga yoqmasa, bu haqda ochiq aytasizmi?
+8. Ko‘p hollarda o‘zingizni tushkun kayfiyatda his qilasizmi?
+9. Turmush o‘rtog‘ingiz sizni tushunmayotganini his qilgan paytingiz bo‘lganmi?
+10. Kutilmagan og‘ir xabarlarni juftingiz bilan bo‘lishasizmi?
+11. Salbiy emotsiyalarni boshqarish sizga osonmi?
+12. O‘z ustingizda ishlashga doimo harakat qilasizmi?
+13. Asabiylikdan keyin tezda tinchlanasizmi?
+14. Sizni jahlingiz tez chiqadimi?
+15. Murojaatga salbiy javob olganingizda buni juftingizga bildirasizmi?
+16. Juftingizning sizga nisbatan tanqidini to‘g‘ri qabul qilasizmi?
+17. Sizga muhim bo‘lgan insonlar bilan tez-tez janjallashib turasizmi?
+18. Uzoq vaqt davomida asabiy holatda bo‘lasizmi?
+19. Hissiy barqarorlikka erishish uchun yoga, meditatsiya yoki ibodat qilasizmi?
+20. Ichki xotirjamlik siz uchun ahamiyatga egami?
+21. Emotsiyalarni boshqarish juftingiz uchun muhim deb hisoblaysizmi?
+22. Kundalik hayotdagi vaziyatlar sizni tez-tez ruhan charchatadimi?
+23. Juftingizda Sizni ilhomlantiradigan qirralar bormi?
+24. His-tuyg‘ularingizni ifoda etishda ochiqmisiz?
+25. O‘zingizni izolyatsiya (qobiqqa uralish) qilish odatingiz bormi?
+26. Sizga yaqin insonlarning muammolari sizga ta’sir qiladimi?
+27. O‘zingizni ruhiy jihatdan sog‘lom deb hisoblaysizmi?
+28. Hissiyotlaringizni boshqalardan yashirasizmi?
+29. Juftingizning hissiy holati sizga qanday ta’sir qiladi?
+30. Kayfiyatingiz tez-tez o‘zgarib turadimi?
+31. Biror kishi sizni tushkunlikka solsa, tezda tiklana olasizmi?
+32. Ba’zan o‘zingizni hech narsaga arzimaydigan deb his qilasizmi?
+33. Siz ruhiy bosimni kamaytirish uchun o‘zingizni yolg‘iz qoldirishga harakat qilasizmi?
+34. Juftingiz bilan ochiq hissiy aloqada bo‘lishga tayyormisiz?
+35. Ichki xotirjamlik siz uchun muhimmi?
+36. Emotsional muvozanatni saqlashga harakat qilasizmi?
+37. Sizga nisbatan ko‘tarilgan ovoz sizni ruhan izdan chiqaradimi?
+38. Siz muammolarni hissiy emas, mantiqiy yondashuv bilan hal qilasizmi?
+39. Juftingiz sizga befarq bo‘lsa, siz ruhiy bezovtalikni his qilasizmi?
+40. Sizni odatda atrofdagilar to‘liq tushunadi, deb o‘ylaysizmi?
+41. Tashqi tanqid sizni ruhiy jihatdan qiynaydimi?
+42. Sizda o‘z-o‘zini tinchlantirishga qaratilgan odatlar bormi?
+43. Siz xavotirlaringiz ustidan nazorat o‘rnatishga odatlanigansizmi?
+44. Sizda tez-tez ruhiy charchoq bo‘lib turadimi?
+45. Hissiy vaziyatlarda sizda asabiylashish alomatlari ko‘rinadimi?
+46. Ruhiy bosim ostida o‘zingizni boshqara olasizmi?
+47. Salbiy vaziyatlardan keyin kayfiyatingizni tiklay olish qobiliyatingiz bormi?
+48. O‘z his-tuyg‘ularingizni tan olishga tayyormisiz?
+49. Kayfiyatga ko‘ra qaror qabul qilasizmi?
+
+50. Ruhiy barqarorlikni saqlash uchun professional yordam so‘raganmisiz?
+5-BO‘LIM: FARZAND TARBIYASI VA OILAVIY MAS‘ULIYAT (50 savol)
+1. Farzand tarbiyasida ota-onaning ikkalasi ham faol ishtirok etishi kerak deb o‘ylaysizmi?
+2. Bolani jazolashdan ko‘ra tushuntirish samaraliroq deb hisoblaysizmi?
+3. Farzandni mehr bilan tarbiyalashning ahamiyatiga ishonasizmi?
+4. Har bir farzandning individual qobiliyatlarini rivojlantirish muhim deb o‘ylaysizmi?
+5. Sizningcha, bolaga qat’iy tartib va intizom kerakmi?
+6. Siz farzand tarbiyasida mehr va nazoratni muvozanatda ushlaysizmi?
+7. Siz bolalarning fikrini inobatga olasizmi?
+8. Siz farzandga o‘z fikrini erkin aytishga ruxsat berasizmi?
+9. Siz uchun diniy tarbiya bolalar uchun zarurmi?
+10. Sizningcha, farzandga yoshligidan mehnatni o‘rgatish kerakmi?
+11. Siz bolaga mustaqillik berishga intilasizmi?
+12. Oila ichidagi nizolarni farzandlardan yashirish lozim deb hisoblaysizmi?
+13. Siz farzandlaringizga doimiy e’tibor ajrata olasizmi?
+14. Siz bolaning muvaffaqiyatini doimo quvvatlaysizmi?
+15. Farzand tarbiyasida kitob o‘qitish va bilim berish muhimmi?
+16. Siz farzandga kichik yoshdan mas’uliyat yuklash tarafdorimisiz?
+17. Farzandlaringiz uchun vaqt ajratish siz uchun ustuvor vazifami?
+18. Siz farzandlaringizga teng muomala qilasizmi?
+19. Bolalar savollariga jiddiy yondashasizmi?
+20. Siz bolalarning psixologik holatiga e’tibor berasizmi?
+21. Siz bola tarbiyasida turmush o‘rtog‘ingiz bilan kelishgan holda harakat qilasizmi?
+22. Farzandlarga mustaqil fikr yuritishni o‘rgatish kerak deb o‘ylaysizmi?
+23. Siz farzandlaringizga doim ijobiy namuna bo‘lishga harakat qilasizmi?
+24. Siz bolalarga telefon va gadjetlardan cheklov qo‘yasizmi?
+25. Bolaga moliyaviy tarbiya berish kerak deb hisoblaysizmi?
+26. Farzandlaringizni do‘stlari bilan tanishishga intilasizmi?
+27. Siz bolaning muammolarini e’tiborsiz qoldirmaysizmi?
+28. Siz farzandlaringizni doimo tinglaysizmi?
+29. Siz farzandlaringizni bir-biriga nisbatan hasad qilmaslikka o‘rgatasizmi?
+30. Farzandlar tarbiyasida mehribonlik va intizomni birgalikda olib borasizmi?
+31. Siz bolaning noto‘g‘ri xatti-harakatlariga darhol javob berasizmi?
+32. Siz farzandni moddiy rag‘bat bilan tarbiyalash tarafdorimisiz?
+33. Siz uchun bolaning hissiy holati uning baholaridan muhimmi?
+34. Siz o‘qituvchilar bilan doimiy aloqada bo‘lib borasizmi?
+35. Siz farzandlaringizni ijtimoiy tarmoqlardagi faolligini kuzatasizmi?
+36. Siz bolaning tarbiyasida sport va san’atni muhim deb bilasizmi?
+37. Siz farzandlaringizga hayotiy qadriyatlarni o‘rgatasizmi?
+38. Siz bolalarga jamoada ishlashni o‘rgatasizmi?
+39. Siz farzandlaringizning har bir kichik yutug‘ini qadrlaysizmi?
+40. Siz bolaning maktabdagi harakatlariga qiziqasizmi?
+41. Siz bolani oilaviy muammolardan himoya qilasizmi?
+42. Siz farzandlaringizni mustaqil hayotga tayyorlaysizmi?
+43. Siz farzandlaringizga ishonch bildirasizmi?
+44. Siz bolaning yoshiga mos mas’uliyat yuklaysizmi?
+45. Siz farzand tarbiyasida haddan tashqari nazoratga qarshimisiz?
+46. Siz ota-onangizdan o‘z farzandlaringiz tarbiyasiga aralashmaslikni so‘raysizmi?
+47. Siz bolani tarbiyalashda jismoniy jazoni qo‘llaysizmi?
+48. Siz bola bilan do‘stona munosabatda bo‘lishni afzal bilasizmi?
+49. Siz bolaning xatolariga sabr bilan yondashasizmi?
+50. Siz farzandlaringizni hayotdagi qiyinchiliklarga ruhan tayyorlaysizmi?
