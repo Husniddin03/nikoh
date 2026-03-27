@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TestResult extends Model
 {
     protected $fillable = [
-        'user_id',
-        'partner_id',
+        'couple_id',
         'total_score',
         'max_score',
         'compatibility_level',
@@ -24,14 +23,9 @@ class TestResult extends Model
         'completed_at' => 'datetime'
     ];
 
-    public function user(): BelongsTo
+    public function couple(): BelongsTo
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function partner(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'partner_id');
+        return $this->belongsTo(Couple::class);
     }
 
     public function answers(): HasMany

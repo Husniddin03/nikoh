@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('test_results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('partner_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('couple_id')->constrained()->onDelete('cascade');
             $table->integer('total_score');
             $table->integer('max_score');
             $table->string('compatibility_level');
