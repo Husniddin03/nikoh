@@ -124,25 +124,48 @@ class AdminController extends Controller
 
     public function showCouple($coupleId)
     {
-        // Find all tests for this couple
-        $allTests = TestResult::with(['couple', 'answers.question.surveySection'])
-            ->whereHas('couple', function($query) use ($coupleId) {
-                $query->where('id', $coupleId);
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
+        // Find the couple with all their test results
+        $couple = Couple::with(['testResults' => function($query) {
+            $query->with(['answers.question.surveySection'])
+                  ->orderBy('created_at', 'desc');
+        }])->findOrFail($coupleId);
 
-        if ($allTests->isEmpty()) {
-            abort(404);
-        }
+        // Calculate statistics
+        $testResults = $couple->testResults;
+        $avgScore = $testResults->avg('total_score') ?? 0;
+        $avgMax = $testResults->avg('max_score') ?? 1;
+        $avgPercentage = ($avgScore / $avgMax) * 100;
 
-        // Group tests by couple
-        $coupleData = [
-            'couple' => $allTests->first()->couple,
-            'test_results' => $allTests
-        ];
+        // Prepare detailed test data with section scores
+        $detailedTests = $testResults->map(function($test) {
+            $sectionScores = [];
+            
+            foreach ($test->answers->groupBy('question.survey_section_id') as $sectionId => $answers) {
+                $section = $answers->first()->question->surveySection;
+                $sScore = $answers->sum('score');
+                $sMax = $answers->count() * 2;
+                
+                $sectionScores[] = [
+                    'section' => $section,
+                    'score' => $sScore,
+                    'max_score' => $sMax,
+                    'percentage' => ($sMax > 0) ? round(($sScore / $sMax) * 100, 1) : 0
+                ];
+            }
+            
+            return [
+                'test' => $test,
+                'section_scores' => $sectionScores,
+                'total_score' => $test->total_score,
+                'max_score' => $test->max_score,
+                'percentage' => ($test->max_score > 0) ? round(($test->total_score / $test->max_score) * 100, 1) : 0,
+                'compatibility_level' => $test->compatibility_level,
+                'created_at' => $test->created_at,
+                'completed_at' => $test->completed_at
+            ];
+        });
 
-        return view('admin.couples.details', compact('coupleData'));
+        return view('admin.couples.details', compact('couple', 'detailedTests', 'avgScore', 'avgPercentage'));
     }
 
     public function getChartData(Request $request)
