@@ -30,6 +30,7 @@ Route::prefix('survey')->name('survey.')->group(function () {
     Route::post('/start', [SurveyController::class, 'start'])->name('start');
     Route::get('/take/{testResult}', [SurveyController::class, 'take'])->name('take');
     Route::post('/submit/{testResult}', [SurveyController::class, 'submit'])->name('submit');
+    Route::get('/reset/{testResult}', [SurveyController::class, 'resetTest'])->name('reset');
     Route::get('/result/{testResult}', [SurveyController::class, 'result'])->name('result');
 });
 
@@ -38,6 +39,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/couples', [AdminController::class, 'couples'])->name('couples');
     Route::get('/couples/{couple}', [AdminController::class, 'showCouple'])->name('couples.show');
     Route::get('/results', [AdminController::class, 'results'])->name('results');
+    Route::get('/results/{testResult}/download-pdf', [AdminController::class, 'downloadTestResultPDF'])->name('results.download.pdf');
+    Route::get('/results/{testResult}/print', [AdminController::class, 'printTestResult'])->name('results.print');
+    Route::delete('/results/cleanup/temp/{filename}', [AdminController::class, 'cleanupTempFile'])->name('results.cleanup.temp');
+    Route::get('/chart-data', [AdminController::class, 'getChartData'])->name('chart.data');
+    Route::get('/section-stats', [AdminController::class, 'getSectionStats'])->name('section.stats');
+    Route::get('/compatibility-stats', [AdminController::class, 'getCompatibilityStats'])->name('compatibility.stats');
     
     // Unit routes
     Route::get('/units', [UnitController::class, 'index'])->name('units.index');

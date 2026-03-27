@@ -64,7 +64,7 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $testResult->completed_at->format('Y-m-d H:i') }}
+                                {{ $testResult->completed_at?->format('Y-m-d H:i') ?? $testResult->created_at->format('Y-m-d H:i') }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-2">
@@ -75,6 +75,14 @@
                                     <a href="{{ route('admin.couples.show', $testResult->couple) }}" 
                                        class="text-green-600 hover:text-green-900" title="Juftlik">
                                         <i class="fas fa-heart"></i>
+                                    </a>
+                                    <a href="{{ route('admin.results.download.pdf', $testResult) }}" 
+                                       class="text-purple-600 hover:text-purple-900" title="PDF yuklab olish">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                    <a href="{{ route('admin.results.print', $testResult) }}" 
+                                       class="text-orange-600 hover:text-orange-900" title="Chop etish">
+                                        <i class="fas fa-print"></i>
                                     </a>
                                 </div>
                             </td>
