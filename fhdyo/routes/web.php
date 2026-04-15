@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SuperAdminController;
 use App\Livewire\User\EntryForm;
 use App\Livewire\User\TestWizard;
 use App\Livewire\Admin\QuestionManager;
+use App\Http\Controllers\ErrorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,3 +105,10 @@ Route::get('/health', function () {
         'version' => '1.0.0'
     ]);
 });
+
+/*
+|--------------------------------------------------------------------------
+| 404 Error Handler
+|--------------------------------------------------------------------------
+*/
+Route::fallback([ErrorController::class, 'notFound']);
