@@ -1,72 +1,106 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SurveyController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\User\ResultController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UnitController;
-use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TestSessionController;
+use App\Http\Controllers\Admin\SuperAdminController;
+use App\Livewire\User\EntryForm;
+use App\Livewire\User\TestWizard;
+use App\Livewire\Admin\QuestionManager;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Default redirect to user entry page
 Route::get('/', function () {
-    return redirect()->route('survey.index');
+    return redirect()->route('user.entry');
 });
 
-// Admin Authentication Routes
-Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.post');
-Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
-
-// Add simple login route for middleware compatibility
-Route::get('/login', function() {
-    return redirect()->route('admin.login');
-})->name('login');
-
-Route::post('/login', function() {
-    return redirect()->route('admin.login.post');
+// User Routes (Livewire SPA)
+Route::prefix('user')->name('user.')->group(function () {
+    // Entry page using Livewire component
+    Route::get('/entry', EntryForm::class)->name('entry');
+    
+    // Test wizard using Livewire component
+    Route::get('/test/{session}', TestWizard::class)->name('test.show');
+    
+    // Results page using controller
+    Route::get('/results/{session}', [ResultController::class, 'index'])->name('results');
+    
+    // PDF Download
+    Route::get('/results/{session}/pdf', [ResultController::class, 'downloadPdf'])->name('results.pdf');
 });
 
-Route::prefix('survey')->name('survey.')->group(function () {
-    Route::get('/', [SurveyController::class, 'index'])->name('index');
-    Route::post('/start', [SurveyController::class, 'start'])->name('start');
-    Route::get('/take/{testResult}', [SurveyController::class, 'take'])->name('take');
-    Route::post('/submit/{testResult}', [SurveyController::class, 'submit'])->name('submit');
-    Route::get('/reset/{testResult}', [SurveyController::class, 'resetTest'])->name('reset');
-    Route::get('/result/{testResult}', [SurveyController::class, 'result'])->name('result');
+// Admin Auth Routes (Guest)
+Route::prefix('admin')->name('admin.')->middleware('web')->group(function () {
+    // Login
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+    
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/couples', [AdminController::class, 'couples'])->name('couples');
-    Route::get('/couples/{couple}', [AdminController::class, 'showCouple'])->name('couples.show');
-    Route::get('/results', [AdminController::class, 'results'])->name('results');
-    Route::get('/results/{testResult}/download-pdf', [AdminController::class, 'downloadTestResultPDF'])->name('results.download.pdf');
-    Route::get('/results/{testResult}/print', [AdminController::class, 'printTestResult'])->name('results.print');
-    Route::delete('/results/cleanup/temp/{filename}', [AdminController::class, 'cleanupTempFile'])->name('results.cleanup.temp');
-    Route::get('/chart-data', [AdminController::class, 'getChartData'])->name('chart.data');
-    Route::get('/section-stats', [AdminController::class, 'getSectionStats'])->name('section.stats');
-    Route::get('/compatibility-stats', [AdminController::class, 'getCompatibilityStats'])->name('compatibility.stats');
+// Admin Routes (Protected)
+Route::prefix('admin')->name('admin.')->middleware(['web', \App\Http\Middleware\AdminMiddleware::class])->group(function () {
+    // Dashboard
+    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/chart-data', [AdminController::class, 'getChartData'])->name('dashboard.chart-data');
     
-    // Unit routes
-    Route::get('/units', [UnitController::class, 'index'])->name('units.index');
-    Route::get('/units/create', [UnitController::class, 'create'])->name('units.create');
-    Route::post('/units', [UnitController::class, 'store'])->name('units.store');
-    Route::get('/units/{unit}/edit', [UnitController::class, 'edit'])->name('units.edit');
-    Route::put('/units/{unit}', [UnitController::class, 'update'])->name('units.update');
-    Route::delete('/units/{unit}', [UnitController::class, 'destroy'])->name('units.destroy');
+    // Units CRUD
+    Route::resource('units', UnitController::class);
     
-    // Question routes
-    Route::get('/units/{unit}/questions/create', [UnitController::class, 'createQuestion'])->name('units.questions.create');
-    Route::post('/units/{unit}/questions', [UnitController::class, 'storeQuestion'])->name('units.questions.store');
-    Route::get('/units/{unit}/questions/{question}/edit', [UnitController::class, 'editQuestion'])->name('units.questions.edit');
-    Route::put('/units/{unit}/questions/{question}', [UnitController::class, 'updateQuestion'])->name('units.questions.update');
-    Route::delete('/units/{unit}/questions/{question}', [UnitController::class, 'destroyQuestion'])->name('units.questions.destroy');
+    // Livewire Question Manager (must be BEFORE resource to avoid conflict)
+    Route::get('/questions/manage', QuestionManager::class)->name('questions.manage');
     
-    // Admin user routes
-    Route::get('/admins', [AdminUserController::class, 'index'])->name('admins.index');
-    Route::get('/admins/create', [AdminUserController::class, 'create'])->name('admins.create');
-    Route::post('/admins', [AdminUserController::class, 'store'])->name('admins.store');
-    Route::get('/admins/{admin}/edit', [AdminUserController::class, 'edit'])->name('admins.edit');
-    Route::put('/admins/{admin}', [AdminUserController::class, 'update'])->name('admins.update');
-    Route::delete('/admins/{admin}', [AdminUserController::class, 'destroy'])->name('admins.destroy');
-    Route::post('/admins/{admin}/toggle', [AdminUserController::class, 'toggleStatus'])->name('admins.toggle');
+    // Questions CRUD
+    Route::resource('questions', QuestionController::class);
+    
+    // Questions Bulk Actions
+    Route::post('/questions/bulk', [QuestionController::class, 'bulkAction'])->name('questions.bulk');
+    
+    // Questions Toggle Critical
+    Route::post('/questions/{question}/toggle-critical', [QuestionController::class, 'toggleCritical'])->name('questions.toggle-critical');
+    
+    // Users CRUD
+    Route::resource('users', UserController::class);
+    
+    // Test Sessions CRUD
+    Route::resource('test-sessions', TestSessionController::class);
+    
+    // Test Session PDF Download
+    Route::get('/test-sessions/{testSession}/pdf', [TestSessionController::class, 'downloadPdf'])->name('test-sessions.pdf');
+    
+    // Super Admin Routes (Only for super admins)
+    Route::prefix('super')->name('super.')->middleware([\App\Http\Middleware\SuperAdminMiddleware::class])->group(function () {
+        // Admins Management
+        Route::resource('admins', SuperAdminController::class);
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Health Check Route
+|--------------------------------------------------------------------------
+*/
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+        'timestamp' => now()->toISOString(),
+        'version' => '1.0.0'
+    ]);
 });

@@ -3,138 +3,155 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Unit;
+use App\Http\Requests\Admin\UnitRequest;
 use Illuminate\Http\Request;
-use App\Models\SurveySection;
-use App\Models\Question;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class UnitController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $units = SurveySection::withCount('activeQuestions')
-            ->orderBy('order')
-            ->get();
+        // Placeholder for admin authentication middleware
+        // $this->middleware('auth:admin');
+    }
+
+    /**
+     * Display a listing of units
+     */
+    public function index(Request $request): View
+    {
+        $query = Unit::withCount('questions')
+            ->with(['admin']);
+
+        // Filter by search
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->input('search') . '%');
+        }
+
+        // Filter by category
+        if ($request->filled('category')) {
+            $query->where('category', $request->input('category'));
+        }
+
+        $units = $query->orderBy('category')
+            ->orderBy('name')
+            ->paginate(15)
+            ->withQueryString();
 
         return view('admin.units.index', compact('units'));
     }
 
-    public function create()
+    /**
+     * Show the form for creating a new unit
+     */
+    public function create(): View
     {
         return view('admin.units.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created unit
+     */
+    public function store(UnitRequest $request): RedirectResponse
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'order' => 'required|integer|min:1',
-            'is_active' => 'boolean'
-        ]);
+        $data = $request->validated();
+        $data['admin_id'] = 1; // Placeholder - get from authenticated admin
 
-        SurveySection::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'order' => $request->order,
-            'is_active' => $request->boolean('is_active', true)
-        ]);
+        Unit::create($data);
 
-        return redirect()->route('admin.units.index')
-            ->with('success', 'Unit muvaffaqiyatli qo\'shildi');
+        return redirect()
+            ->route('admin.units.index')
+            ->with('success', 'Bo\'lim muvaffaqiyatli yaratildi.');
     }
 
-    public function edit(SurveySection $unit)
+    /**
+     * Display the specified unit
+     */
+    public function show(Unit $unit): View
     {
-        $unit->load('activeQuestions');
+        $unit->load(['questions', 'admin', 'unitScores' => function($query) {
+            $query->selectRaw('unit_id, AVG(match_percentage) as avg_score, COUNT(*) as total_tests')
+                ->groupBy('unit_id');
+        }]);
+
+        return view('admin.units.show', compact('unit'));
+    }
+
+    /**
+     * Show the form for editing the specified unit
+     */
+    public function edit(Unit $unit): View
+    {
         return view('admin.units.edit', compact('unit'));
     }
 
-    public function update(Request $request, SurveySection $unit)
+    /**
+     * Update the specified unit
+     */
+    public function update(UnitRequest $request, Unit $unit): RedirectResponse
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'order' => 'required|integer|min:1',
-            'is_active' => 'boolean'
-        ]);
+        $unit->update($request->validated());
 
-        $unit->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'order' => $request->order,
-            'is_active' => $request->boolean('is_active', true)
-        ]);
-
-        return redirect()->route('admin.units.index')
-            ->with('success', 'Unit muvaffaqiyatli yangilandi');
+        return redirect()
+            ->route('admin.units.index')
+            ->with('success', 'Bo\'lim muvaffaqiyatli yangilandi.');
     }
 
-    public function destroy(SurveySection $unit)
+    /**
+     * Remove the specified unit
+     */
+    public function destroy(Unit $unit): RedirectResponse
     {
         // Check if unit has questions
-        if ($unit->questions()->exists()) {
-            return back()->with('error', 'Bu unitda savollar mavjud. Avval savollarni o\'chirib tashlang.');
+        if ($unit->questions()->count() > 0) {
+            return redirect()
+                ->route('admin.units.index')
+                ->with('error', 'Bo\'limni o\'chirish uchun avval uning savollarini o\'chirishingiz kerak.');
         }
 
         $unit->delete();
 
-        return redirect()->route('admin.units.index')
-            ->with('success', 'Unit muvaffaqiyatli o\'chirildi');
+        return redirect()
+            ->route('admin.units.index')
+            ->with('success', 'Bo\'lim muvaffaqiyatli o\'chirildi.');
     }
 
-    // Questions management
-    public function createQuestion(SurveySection $unit)
+    /**
+     * Get units by category (AJAX endpoint)
+     */
+    public function getByCategory(Request $request)
     {
-        return view('admin.units.questions.create', compact('unit'));
+        $category = $request->input('category');
+        
+        $units = Unit::where('category', $category)
+            ->orderBy('name')
+            ->get(['id', 'name']);
+
+        return response()->json($units);
     }
 
-    public function storeQuestion(Request $request, SurveySection $unit)
+    /**
+     * Duplicate a unit with its questions
+     */
+    public function duplicate(Unit $unit): RedirectResponse
     {
-        $request->validate([
-            'question_text' => 'required|string',
-            'order' => 'required|integer|min:1',
-            'is_active' => 'boolean'
-        ]);
+        $newUnit = $unit->replicate();
+        $newUnit->name = $unit->name . ' (Nusxa)';
+        $newUnit->admin_id = 1; // Placeholder - get from authenticated admin
+        $newUnit->save();
 
-        Question::create([
-            'survey_section_id' => $unit->id,
-            'question_text' => $request->question_text,
-            'order' => $request->order,
-            'is_active' => $request->boolean('is_active', true)
-        ]);
+        // Duplicate questions
+        foreach ($unit->questions as $question) {
+            $newQuestion = $question->replicate();
+            $newQuestion->unit_id = $newUnit->id;
+            $newQuestion->admin_id = 1; // Placeholder - get from authenticated admin
+            $newQuestion->save();
+        }
 
-        return redirect()->route('admin.units.edit', $unit)
-            ->with('success', 'Savol muvaffaqiyatli qo\'shildi');
-    }
-
-    public function editQuestion(SurveySection $unit, Question $question)
-    {
-        return view('admin.units.questions.edit', compact('unit', 'question'));
-    }
-
-    public function updateQuestion(Request $request, SurveySection $unit, Question $question)
-    {
-        $request->validate([
-            'question_text' => 'required|string',
-            'order' => 'required|integer|min:1',
-            'is_active' => 'boolean'
-        ]);
-
-        $question->update([
-            'question_text' => $request->question_text,
-            'order' => $request->order,
-            'is_active' => $request->boolean('is_active', true)
-        ]);
-
-        return redirect()->route('admin.units.edit', $unit)
-            ->with('success', 'Savol muvaffaqiyatli yangilandi');
-    }
-
-    public function destroyQuestion(SurveySection $unit, Question $question)
-    {
-        $question->delete();
-
-        return redirect()->route('admin.units.edit', $unit)
-            ->with('success', 'Savol muvaffaqiyatli o\'chirildi');
+        return redirect()
+            ->route('admin.units.index')
+            ->with('success', 'Bo\'lim va uning savollari muvaffaqiyatli nusxalandi.');
     }
 }

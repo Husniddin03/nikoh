@@ -2,30 +2,38 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Question extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'survey_section_id',
-        'question_text',
-        'order',
-        'is_active'
+        'unit_id',
+        'admin_id',
+        'question',
+        'is_critical',
     ];
 
     protected $casts = [
-        'is_active' => 'boolean'
+        'is_critical' => 'boolean',
     ];
 
-    public function surveySection(): BelongsTo
+    public function unit(): BelongsTo
     {
-        return $this->belongsTo(SurveySection::class);
+        return $this->belongsTo(Unit::class);
     }
 
-    public function answers(): HasMany
+    public function admin(): BelongsTo
     {
-        return $this->hasMany(Answer::class);
+        return $this->belongsTo(Admin::class);
+    }
+
+    public function results(): HasMany
+    {
+        return $this->hasMany(Result::class);
     }
 }
