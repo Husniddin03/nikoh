@@ -109,6 +109,17 @@ class AdminController extends Controller
                 ];
             });
 
+        $thisMonthActiveUsers = TestSession::where('created_at', '>=', now()->startOfMonth())
+            ->get(['initiator_id', 'partner_id'])
+            ->flatMap(fn($s) => [$s->initiator_id, $s->partner_id])
+            ->filter()
+            ->unique()
+            ->count();
+
+        $thisMonthActiveUsersPercent = $totalUsers > 0
+            ? round(($thisMonthActiveUsers / $totalUsers) * 100, 2)
+            : 0;
+
         return view('admin.index', compact(
             'totalUsers',
             'totalTests',
@@ -124,7 +135,8 @@ class AdminController extends Controller
             'dailyStats',
             'testStatusDistribution',
             'ageGroups',
-            'unitPerformance'
+            'unitPerformance',
+            'thisMonthActiveUsersPercent'
         ));
     }
 

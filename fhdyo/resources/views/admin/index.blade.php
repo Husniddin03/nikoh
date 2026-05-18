@@ -20,7 +20,7 @@
                         <div class="flex items-center gap-1 mt-2">
                             <span
                                 class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">
-                                +{{ rand(5, 15) }}% bu oy
+                                +{{$thisMonthActiveUsersPercent}}% bu oy
                             </span>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                 class="bg-white rounded-2xl p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-300 group">
                 <div class="flex items-start justify-between">
                     <div class="flex-1">
-                        <p class="text-xs sm:text-sm font-medium text-slate-500 uppercase tracking-wide">O\'rtacha
+                        <p class="text-xs sm:text-sm font-medium text-slate-500 uppercase tracking-wide">O'rtacha
                             Muvofiqlik</p>
                         <p class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2">
                             {{ number_format($averageCompatibility, 1) }}%</p>
@@ -594,7 +594,7 @@
             data: {
                 labels: {!! json_encode($unitPerformance->pluck('name')) !!},
                 datasets: [{
-                    label: 'O\'rtacha muvofiqlik (%)',
+                    label: "O'rtacha muvofiqlik (%)",
                     data: {!! json_encode($unitPerformance->pluck('avg_score')) !!},
                     backgroundColor: 'rgba(99, 102, 241, 0.8)',
                     borderColor: 'rgb(99, 102, 241)',
