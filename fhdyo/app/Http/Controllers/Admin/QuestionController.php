@@ -71,7 +71,7 @@ class QuestionController extends Controller
         Question::create($data);
 
         return redirect()
-            ->route('admin.questions.index')
+            ->route('admin.questions.create')
             ->with('success', 'Savol muvaffaqiyatli yaratildi.');
     }
 
