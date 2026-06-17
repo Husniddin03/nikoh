@@ -26,7 +26,7 @@
                             class="peer sr-only"
                             :disabled="$isProcessing"
                         >
-                        <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-4 text-center transition-all peer-checked:bg-emerald-500 peer-checked:border-emerald-500 peer-checked:text-white peer-checked:shadow-lg peer-checked:shadow-emerald-200 peer-disabled:opacity-50 hover:border-emerald-300">
+                        <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-2 text-center transition-all peer-checked:bg-emerald-500 peer-checked:border-emerald-500 peer-checked:text-white peer-checked:shadow-lg peer-checked:shadow-emerald-200 peer-disabled:opacity-50 hover:border-emerald-300">
                             <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-2 peer-checked:bg-white/20">
                                 <svg class="w-5 h-5 text-emerald-600 peer-checked:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
@@ -44,7 +44,7 @@
                             class="peer sr-only"
                             :disabled="$isProcessing"
                         >
-                        <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-4 text-center transition-all peer-checked:bg-amber-500 peer-checked:border-amber-500 peer-checked:text-white peer-checked:shadow-lg peer-checked:shadow-amber-200 peer-disabled:opacity-50 hover:border-amber-300">
+                        <div class="bg-slate-50 border-2 border-slate-200 rounded-xl p-2 text-center transition-all peer-checked:bg-amber-500 peer-checked:border-amber-500 peer-checked:text-white peer-checked:shadow-lg peer-checked:shadow-amber-200 peer-disabled:opacity-50 hover:border-amber-300">
                             <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center mx-auto mb-2 peer-checked:bg-white/20">
                                 <svg class="w-5 h-5 text-amber-600 peer-checked:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
@@ -79,10 +79,10 @@
                         </svg>
                     </div>
                     <input
-                        type="text"
+                        type="number"
                         id="myJshshir"
                         wire:model.live="my_jshshir"
-                        maxlength="14"
+                        {{-- maxlength="14" --}}
                         placeholder="14 ta raqam"
                         class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-white transition-all font-mono text-base {{ $errors->has('my_jshshir') ? 'border-rose-500' : '' }}"
                         :disabled="$isProcessing"
@@ -112,10 +112,10 @@
                         </svg>
                     </div>
                     <input
-                        type="text"
+                        type="number"
                         id="partnerJshshir"
                         wire:model.live="partner_jshshir"
-                        maxlength="14"
+                        {{-- maxlength="14" --}}
                         placeholder="14 ta raqam"
                         class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-white transition-all font-mono text-base {{ $errors->has('partner_jshshir') ? 'border-rose-500' : '' }}"
                         :disabled="$isProcessing"

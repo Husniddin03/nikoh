@@ -50,7 +50,7 @@
                 Bo'limlar bo'yicha Muvofiqlik
             </h3>
             <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-5">
-                @forelse($chartData['datasets'][0]['data'] ?? [] as $index => $percentage)
+                @forelse(collect($chartData['datasets'][0]['data'] ?? []) as $index => $percentage)
                     <div class="mb-3 last:mb-0">
                         <div class="flex justify-between items-center mb-1.5">
                             <span class="text-sm font-medium text-slate-700">{{ $chartData['labels'][$index] }}</span>
