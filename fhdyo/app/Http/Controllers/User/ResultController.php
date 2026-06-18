@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewCoupleMail;
 use App\Models\TestSession;
 use App\Models\User;
 use App\Services\AiService;
 use App\Services\CompatibilityService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Illuminate\Http\Response;
 use App\Models\Result;
@@ -74,6 +76,29 @@ class ResultController extends Controller
         // Get detailed answers comparison
         $answersComparison = $this->getAnswersComparison($session, $currentUser, $partner);
 
+        $pdf = $this->generatePdf($session);
+
+        try {
+            Mail::to([
+                'husniddin12134041@gmail.com'
+            ])->send(
+                    new NewCoupleMail(
+                        $session,
+                        $pdf->output()
+                    )
+                );
+        } catch (\Throwable $e) {
+            \Log::error('Mail yuborishda xatolik', [
+                'session_id' => $session->id,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        // Kod davom etadi
+        $session->update([
+            'ai_generated' => true,
+        ]);
+
         return view('user.results', compact(
             'session',
             'unitScores',
@@ -84,6 +109,36 @@ class ResultController extends Controller
             'currentUser',
             'answersComparison'
         ));
+    }
+
+    private function generatePdf(TestSession $session)
+    {
+        $currentUser = $session->initiator;
+
+        $unitScores = $session->unitScores()->with('unit')->get();
+
+        $overallCompatibility = $this->compatibilityService->getOverallCompatibility($session);
+
+        $partner = $session->partner;
+
+        $answersComparison = $this->getAnswersComparison(
+            $session,
+            $currentUser,
+            $partner
+        );
+
+        $pdf = Pdf::loadView('user.results-pdf', compact(
+            'session',
+            'unitScores',
+            'overallCompatibility',
+            'partner',
+            'currentUser',
+            'answersComparison'
+        ));
+
+        $pdf->setPaper('A4', 'portrait');
+
+        return $pdf;
     }
 
     public function aiResponse(Request $request, AiService $service)

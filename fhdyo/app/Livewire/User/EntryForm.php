@@ -86,7 +86,7 @@ class EntryForm extends Component
         $this->isProcessing = true;
 
         try {
-            $this->validate();
+            // $this->validate();
 
             // Get or create users
             $initiator = $this->jshshirService->getOrCreateUser($this->my_jshshir);

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\User;
 
+use App\Mail\NewCoupleMail;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use App\Models\TestSession;
 use App\Models\Question;
