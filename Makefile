@@ -1,4 +1,4 @@
-make deploy:
+make deploy -M=updated:
 	git add .
-	git commit -m "updated"
+	git commit -m "${M}"
 	git push origin main

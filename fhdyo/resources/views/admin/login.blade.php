@@ -101,13 +101,13 @@
                     </div>
 
                     <!-- Remember Me -->
-                    <div class="flex items-center">
+                    {{-- <div class="flex items-center">
                         <input type="checkbox" id="remember" name="remember"
                             class="h-4 w-4 border-slate-300 text-indigo-600 rounded focus:ring-indigo-500 focus:ring-2">
                         <label for="remember" class="ml-2 block text-sm text-slate-600">
                             Eslab qolish
                         </label>
-                    </div>
+                    </div> --}}
 
                     <!-- Submit Button -->
                     <button type="submit"

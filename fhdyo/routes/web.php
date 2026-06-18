@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\TestSession;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ResultController;
 use App\Http\Controllers\Admin\AuthController;
@@ -40,6 +41,8 @@ Route::prefix('user')->name('user.')->group(function () {
     
     // Results page using controller
     Route::get('/results/{session}', [ResultController::class, 'index'])->name('results');
+
+    Route::post('/results/ai', [ResultController::class,'aiResponse'])->name('results.ai');
     
     // PDF Download
     Route::get('/results/{session}/pdf', [ResultController::class, 'downloadPdf'])->name('results.pdf');

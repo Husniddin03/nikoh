@@ -171,7 +171,6 @@ class TestWizard extends Component
                 
                 // Calculate compatibility
                 $this->compatibilityService->calculate($this->session);
-                
                 // Redirect to results
                 $this->redirectRoute('user.results', $this->session->id, navigate: false);
                 return;

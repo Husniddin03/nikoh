@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\TestSession;
 use App\Models\User;
+use App\Services\AiService;
 use App\Services\CompatibilityService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -29,11 +30,11 @@ class ResultController extends Controller
     {
         // Security check: ensure user can only access their own sessions
         $currentUser = $this->getCurrentUser();
-        
+
         if (!$currentUser) {
             abort(403, 'Iltimos, avval testni boshlang.');
         }
-        
+
         if ($session->initiator_id !== $currentUser->id && $session->partner_id !== $currentUser->id) {
             abort(403, 'Siz bu natijalarni ko\'rish huquqiga ega emassiz.');
         }
@@ -47,7 +48,7 @@ class ResultController extends Controller
         $unitScores = $session->unitScores()
             ->with('unit')
             ->get();
-        
+
         // If no scores exist yet, calculate them
         if ($unitScores->isEmpty()) {
             $this->compatibilityService->calculate($session);
@@ -58,16 +59,16 @@ class ResultController extends Controller
 
         // Prepare chart data
         $chartData = $this->prepareChartData($unitScores);
-        
+
         // Calculate overall compatibility
         $overallCompatibility = $this->compatibilityService->getOverallCompatibility($session);
-        
+
         // Generate recommendations for low-scoring units
         $recommendations = $this->generateRecommendations($unitScores);
 
         // Get partner information
-        $partner = $session->initiator_id === $currentUser->id 
-            ? $session->partner 
+        $partner = $session->initiator_id === $currentUser->id
+            ? $session->partner
             : $session->initiator;
 
         // Get detailed answers comparison
@@ -85,6 +86,67 @@ class ResultController extends Controller
         ));
     }
 
+    public function aiResponse(Request $request, AiService $service)
+    {
+        $session = TestSession::findOrFail($request->session_id);
+
+        // Agar majburiy (force) bo'lmasa va bazada allaqachon javob bo'lsa, AI xizmatiga bormasdan qaytaramiz
+        if ($session->ai_generated && !$request->boolean('force') && !empty($session->ai_result)) {
+            return response()->json([
+                'ready' => true,
+                'aiAnswer' => $session->ai_result,
+            ]);
+        }
+
+        $currentUser = $this->getCurrentUser();
+        $partner = $session->initiator_id === $currentUser->id ? $session->partner : $session->initiator;
+
+        $answersComparison = $this->getAnswersComparison($session, $currentUser, $partner);
+
+        // AI xizmatiga faqat shu yerda so'rov boradi (yaqin orada limit to'lmaydi)
+        $aiAnswer = $service->answerAi($answersComparison);
+
+        $session->update([
+            'ai_result' => $aiAnswer,
+            'ai_generated' => true,
+        ]);
+
+        return response()->json([
+            'ready' => true,
+            'aiAnswer' => $aiAnswer,
+        ]);
+    }
+
+    public function regenerateAi(
+        Request $request,
+        AiService $aiService
+    ) {
+        $session = TestSession::findOrFail($request->session_id);
+
+        $currentUser = $this->getCurrentUser();
+
+        $partner = $session->initiator_id === $currentUser->id
+            ? $session->partner
+            : $session->initiator;
+
+        $answersComparison = $this->getAnswersComparison(
+            $session,
+            $currentUser,
+            $partner
+        );
+
+        $aiAnswer = $aiService->answerAi($answersComparison);
+
+        $session->update([
+            'ai_result' => $aiAnswer,
+            'ai_generated' => true,
+        ]);
+
+        return response()->json([
+            'aiAnswer' => $aiAnswer,
+        ]);
+    }
+
     /**
      * Download test results as PDF
      */
@@ -92,11 +154,11 @@ class ResultController extends Controller
     {
         // Security check
         $currentUser = $this->getCurrentUser();
-        
+
         if (!$currentUser) {
             abort(403, 'Iltimos, avval testni boshlang.');
         }
-        
+
         if ($session->initiator_id !== $currentUser->id && $session->partner_id !== $currentUser->id) {
             abort(403, 'Siz bu natijalarni yuklab olish huquqiga ega emassiz.');
         }
@@ -107,15 +169,15 @@ class ResultController extends Controller
 
         // Get data
         $unitScores = $session->unitScores()->with('unit')->get();
-        
+
         if ($unitScores->isEmpty()) {
             $this->compatibilityService->calculate($session);
             $unitScores = $session->unitScores()->with('unit')->get();
         }
 
         $overallCompatibility = $this->compatibilityService->getOverallCompatibility($session);
-        $partner = $session->initiator_id === $currentUser->id 
-            ? $session->partner 
+        $partner = $session->initiator_id === $currentUser->id
+            ? $session->partner
             : $session->initiator;
 
         // Get detailed answers comparison for PDF
@@ -157,7 +219,7 @@ class ResultController extends Controller
         foreach ($unitScores as $score) {
             $labels[] = $score->unit->name;
             $data[] = round($score->match_percentage, 1);
-            
+
             // Color coding based on score
             if ($score->match_percentage >= 75) {
                 $backgroundColor[] = 'rgba(34, 197, 94, 0.2)'; // green
@@ -233,46 +295,47 @@ class ResultController extends Controller
     private function getCurrentUser(): ?User
     {
         $userJshshir = session('user_jshshir');
-        
+
         if ($userJshshir) {
             return User::where('jshshir', $userJshshir)->first();
         }
-        
+
         return null;
     }
 
     /**
      * Get detailed answers comparison between two users
      */
-    private function getAnswersComparison(TestSession $session, User $currentUser, User $partner): array
+    public function getAnswersComparison(TestSession $session, User $currentUser, User $partner): array
     {
         $comparison = [];
-        
+
         // Get all results for this session
         $allResults = Result::where('session_id', $session->id)
             ->with('question.unit')
             ->get();
-        
+
         // Get questions
         $questions = Question::whereIn('id', $session->question_ids ?? [])
             ->with('unit')
             ->get()
             ->keyBy('id');
-        
+
         // Group results by question
         $resultsByQuestion = $allResults->groupBy('question_id');
-        
+
         foreach ($resultsByQuestion as $questionId => $questionResults) {
             $question = $questions->get($questionId);
-            if (!$question) continue;
-            
+            if (!$question)
+                continue;
+
             $userAnswer = $questionResults->firstWhere('user_id', $currentUser->id);
             $partnerAnswer = $questionResults->firstWhere('user_id', $partner->id);
-            
+
             // Only include if both answered
             if ($userAnswer && $partnerAnswer) {
                 $isMatch = $userAnswer->answer === $partnerAnswer->answer;
-                
+
                 $comparison[] = [
                     'question_id' => $questionId,
                     'question' => $question->question,
@@ -285,7 +348,7 @@ class ResultController extends Controller
                 ];
             }
         }
-        
+
         // Sort by match status (mismatches first) and then by critical questions
         usort($comparison, function ($a, $b) {
             if ($a['is_match'] !== $b['is_match']) {
@@ -296,7 +359,7 @@ class ResultController extends Controller
             }
             return 0;
         });
-        
+
         return $comparison;
     }
 }

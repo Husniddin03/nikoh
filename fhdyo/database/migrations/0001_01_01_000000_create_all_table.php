@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         // 1. Admins table
@@ -55,6 +54,8 @@ return new class extends Migration
             $table->enum('category', ['ajrim', 'nikoh'])->default('nikoh');
             $table->json('question_ids'); // Tanlangan savollar tartibi: [1, 5, 8...]
             $table->enum('status', ['waiting', 'in_progress', 'completed'])->default('waiting');
+            $table->longText('ai_result')->nullable();
+            $table->boolean('ai_generated')->default(false);
             $table->timestamps();
         });
 
