@@ -80,7 +80,7 @@ class ResultController extends Controller
 
         try {
             Mail::to([
-                'husniddin12134041@gmail.com'
+                'jovliyevshaxobiddin@gmail.com'
             ])->send(
                     new NewCoupleMail(
                         $session,

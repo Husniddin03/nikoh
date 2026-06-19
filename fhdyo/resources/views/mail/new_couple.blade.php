@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -23,4 +22,3 @@
 
 </body>
 </html>
-```
